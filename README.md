@@ -12,15 +12,12 @@ Projekt został zbudowany w architekturze wielousługowej z wykorzystaniem backe
 - [Główne funkcjonalności](#główne-funkcjonalności)
 - [Architektura systemu](#architektura-systemu)
 - [Technologie](#technologie)
-- [Struktura projektu](#struktura-projektu)
 - [Uruchomienie projektu](#uruchomienie-projektu)
-- [Konfiguracja środowiska](#konfiguracja-środowiska)
 - [API backendu](#api-backendu)
 - [Worker Python](#worker-python)
 - [Generowanie CV](#generowanie-cv)
 - [Baza danych](#baza-danych)
 - [Frontend](#frontend)
-- [Docker](#docker)
 - [Plany rozwoju](#plany-rozwoju)
 - [Autor](#autor)
 
@@ -111,7 +108,8 @@ Worker generuje plik PDF
         ↓
 Backend udostępnia gotowe CV do pobrania
 ```
-Technologie
+
+## Technologie
 ```txt
 Backend
 ASP.NET Core 8
@@ -142,7 +140,7 @@ SQL Server 2022
 RabbitMQ Management
 ```
 
-Uruchomienie projektu
+## Uruchomienie projektu
 
 1. Klonowanie repozytorium
 
@@ -163,7 +161,7 @@ RabbitMQ:   http://localhost:15672
 SQL Server: localhost:1433
 ```
 
-API backendu
+## API backendu
 
 Backend udostępnia REST API odpowiedzialne za:
 
@@ -190,7 +188,7 @@ Autoryzowane endpointy wymagają nagłówka:
 
 Authorization: Bearer <token>
 
-Worker Python
+## Worker Python
 
 Worker odpowiada za obsługę zadań związanych z generowaniem CV.
 
@@ -221,7 +219,7 @@ Przykładowa wiadomość w kolejce:
 }
 ```
 
-Generowanie CV
+## Generowanie CV
 
 CV generowane jest po stronie workera Python z użyciem biblioteki ReportLab.
 
@@ -253,7 +251,7 @@ Sekcja projektów może zawierać:
 - technologie,
 - link.
 
-Baza danych
+## Baza danych
 
 Projekt korzysta z SQL Server oraz Entity Framework Core.
 
@@ -274,28 +272,19 @@ GeneratedCvFile
 Project
 ```
 Relacje danych obejmują między innymi:
-
-użytkownik posiada wiele profili,
-
-profil posiada dane osobowe,
-
-profil posiada wiele doświadczeń,
-
-profil posiada wiele wpisów edukacji,
-
-profil posiada wiele umiejętności,
-
-profil posiada wiele projektów,
-
-profil może posiadać zdjęcie profilowe,
-
-użytkownik może posiadać wiele wygenerowanych CV.
-
-Frontend
-
+```txt
+-użytkownik posiada wiele profili,
+-profil posiada dane osobowe,
+-profil posiada wiele doświadczeń,
+-profil posiada wiele wpisów edukacji,
+-profil posiada wiele umiejętności,
+-profil posiada wiele projektów,
+-profil może posiadać zdjęcie profilowe,
+-użytkownik może posiadać wiele wygenerowanych CV.
+-Frontend
 Frontend został zbudowany w Angularze i odpowiada za interakcję użytkownika z systemem.
-
-Główne widoki aplikacji:
+```
+## Główne widoki aplikacji:
 ```txt
 logowanie,
 rejestracja,
@@ -308,7 +297,9 @@ modal konfiguracji CV,
 lista wygenerowanych dokumentów.
 ```
 
-Frontend wykorzystuje:
+## Frontend
+
+wykorzystuje:
 ```txt
 komponenty standalone,
 formularze reaktywne,
@@ -317,7 +308,7 @@ Bootstrap,
 komunikację z API przez HTTP Client,
 dynamiczne modale do konfiguracji CV.
 ```
-Plany rozwoju
+## Plany rozwoju
 
 Planowane lub możliwe rozszerzenia projektu:
 ```txt
@@ -335,7 +326,7 @@ lepsze zarządzanie kategoriami ofert,
 obsługa wielu języków CV,
 wdrożenie aplikacji na serwer produkcyjny.
 ```
-Status projektu
+## Status projektu
 
 Projekt jest w fazie rozwoju. Aktualnie rozwijane są funkcje związane z:
 ```txt
@@ -346,7 +337,7 @@ komunikacją backendu z workerem,
 poprawą wyglądu CV,
 integracją z ofertami pracy.
 ```
-Autor
+## Autor
 
 Projekt tworzony przez:
 
