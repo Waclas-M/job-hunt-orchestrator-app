@@ -112,6 +112,7 @@ Worker generuje plik PDF
 Backend udostępnia gotowe CV do pobrania
 ```
 Technologie
+```txt
 Backend
 ASP.NET Core 8
 Minimal APIs
@@ -139,22 +140,28 @@ Docker
 Docker Compose
 SQL Server 2022
 RabbitMQ Management
+```
 
 Uruchomienie projektu
 
 1. Klonowanie repozytorium
+
+   
 git clone https://github.com/Waclas-M/job-hunt-orchestrator-app.git
+
 cd job-hunt-orchestrator-app
 
 2. Uruchomienie przez Docker Compose
+   
 docker compose up --build
 
 Po uruchomieniu dostępne będą usługi:
-
+```txt
 Frontend:   http://localhost:4200
 Backend:    http://localhost:5000
 RabbitMQ:   http://localhost:15672
 SQL Server: localhost:1433
+```
 
 API backendu
 
@@ -169,6 +176,7 @@ pobieranie wygenerowanych plików PDF.
 
 Przykładowe endpointy:
 
+```txt
 POST   /login
 POST   /register
 GET    /api/UserCvDetailsData
@@ -176,10 +184,12 @@ POST   /UploadCV
 GET    /DownloadCV/{id}
 GET    /LaborMarketOffers
 POST   /GenerateCV
+```
 
 Autoryzowane endpointy wymagają nagłówka:
 
 Authorization: Bearer <token>
+
 Worker Python
 
 Worker odpowiada za obsługę zadań związanych z generowaniem CV.
@@ -195,7 +205,7 @@ wygenerowanie dokumentu PDF,
 przekazanie wyniku do backendu lub zapisanie go w bazie.
 
 Przykładowa wiadomość w kolejce:
-
+```txt
 {
   "userId": "user-id",
   "offerUrl": "https://example.com/job-offer",
@@ -209,6 +219,8 @@ Przykładowa wiadomość w kolejce:
   "userSkillsIds": [],
   "userStrengsIds": []
 }
+```
+
 Generowanie CV
 
 CV generowane jest po stronie workera Python z użyciem biblioteki ReportLab.
@@ -240,12 +252,13 @@ Sekcja projektów może zawierać:
 - zakres dat,
 - technologie,
 - link.
+
 Baza danych
 
 Projekt korzysta z SQL Server oraz Entity Framework Core.
 
 Przykładowe główne encje:
-
+```txt
 AppUser
 Profile
 UserProfilePersonalData
@@ -259,23 +272,31 @@ ProfilePhoto
 LaborMarketOffer
 GeneratedCvFile
 Project
-
+```
 Relacje danych obejmują między innymi:
 
 użytkownik posiada wiele profili,
+
 profil posiada dane osobowe,
+
 profil posiada wiele doświadczeń,
+
 profil posiada wiele wpisów edukacji,
+
 profil posiada wiele umiejętności,
+
 profil posiada wiele projektów,
+
 profil może posiadać zdjęcie profilowe,
+
 użytkownik może posiadać wiele wygenerowanych CV.
+
 Frontend
 
 Frontend został zbudowany w Angularze i odpowiada za interakcję użytkownika z systemem.
 
 Główne widoki aplikacji:
-
+```txt
 logowanie,
 rejestracja,
 dashboard,
@@ -285,25 +306,25 @@ lista ofert pracy,
 konfiguracja generowania CV,
 modal konfiguracji CV,
 lista wygenerowanych dokumentów.
+```
 
 Frontend wykorzystuje:
-
+```txt
 komponenty standalone,
 formularze reaktywne,
 walidację danych,
 Bootstrap,
 komunikację z API przez HTTP Client,
 dynamiczne modale do konfiguracji CV.
-
+```
 Plany rozwoju
 
 Planowane lub możliwe rozszerzenia projektu:
-
+```txt
 dodanie większej liczby szablonów CV,
 edytor CV przed wygenerowaniem pliku PDF,
 podgląd CV w przeglądarce,
 integracja z portalami z ofertami pracy,
-automatyczne scrapowanie ofert pracy,
 analiza zgodności CV z ofertą,
 scoring dopasowania użytkownika do oferty,
 obsługa listów motywacyjnych,
@@ -313,16 +334,18 @@ panel administratora,
 lepsze zarządzanie kategoriami ofert,
 obsługa wielu języków CV,
 wdrożenie aplikacji na serwer produkcyjny.
+```
 Status projektu
 
 Projekt jest w fazie rozwoju. Aktualnie rozwijane są funkcje związane z:
-
+```txt
 generowaniem CV,
 wyborem danych do dokumentu,
 obsługą profili użytkownika,
 komunikacją backendu z workerem,
 poprawą wyglądu CV,
 integracją z ofertami pracy.
+```
 Autor
 
 Projekt tworzony przez:
@@ -330,7 +353,7 @@ Projekt tworzony przez:
 Maciej Węcłaś
 
 Projekt realizowany jako aplikacja wspierająca proces poszukiwania pracy oraz jako praktyczne wykorzystanie technologii:
-
+```txt
 ASP.NET Core,
 Angular,
 Python,
@@ -339,6 +362,7 @@ SQL Server,
 Docker,
 AI/LLM,
 generowanie dokumentów PDF.
+```
 Licencja
 
 Projekt prywatny / edukacyjny.
