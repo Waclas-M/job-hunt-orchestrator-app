@@ -1,0 +1,75 @@
+  .profile-section-bg {
+    background:
+      radial-gradient(circle at top left, rgba(25, 135, 84, 0.12), transparent 35%),
+      radial-gradient(circle at top right, rgba(13, 110, 253, 0.10), transparent 35%),
+      linear-gradient(180deg, #f8f9fa 0%, #eef2f7 100%);
+    min-height: 100%;
+  }
+
+  .profile-main-card {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(10px);
+  }
+
+  .profile-modal {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
+  }
+
+  .profile-block {
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.04);
+  }
+
+  .profile-input,
+  .profile-select {
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: none;
+    background-color: rgba(255, 255, 255, 0.92);
+  }
+
+  .profile-input:focus,
+  .profile-select:focus {
+    border-color: rgba(25, 135, 84, 0.45);
+    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.10);
+  }
+
+  .profile-textarea {
+    border-radius: 1rem;
+  }
+
+  .selector-box {
+    background: #f8fafc;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+
+  .profile-btn-success {
+    background: linear-gradient(135deg, #198754, #20c997);
+    border: none;
+  }
+
+  .profile-btn-success:hover {
+    filter: brightness(1.05);
+  }
+
+  .form-check-input:checked {
+    background-color: #198754;
+    border-color: #198754;
+  }
+
+  @media (max-width: 768px) {
+    .profile-section-bg {
+      padding-left: 0.25rem;
+      padding-right: 0.25rem;
+    }
+
+    .profile-block {
+      padding: 1rem;
+    }
+  }

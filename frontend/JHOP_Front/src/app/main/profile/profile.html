@@ -1,0 +1,700 @@
+<div class="container-fluid m-0 p-0 g-0">
+
+  <div class="row m-0 p-0 g-0">
+    <div class="col-12 m-0 p-0 g-0">
+      <div class="card h-100 shadow-sm border-0 overflow-hidden profile-main-card ">
+
+        <div class="card-body p-4 p-lg-5 profile-section-bg">
+
+          <div class="row mb-4">
+            <div class="col-12 text-center text-md-start">
+              <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2 mb-3">
+                Profil użytkownika
+              </span>
+              <h2 class="fw-bold mb-2">Ustawienia Profilu</h2>
+              <p class="text-muted mb-0">Tu znajdziesz wszystkie ustawienia aplikacji.</p>
+              <hr class="my-4">
+            </div>
+          </div>
+
+          <!-- Dane osobowe -->
+          <div class="profile-block mb-4">
+            <div class="row g-3 mb-3">
+              <div class="col-12">
+                <h4 class="fw-bold mb-0">Dane osobowe</h4>
+              </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-12 col-md-6">
+                <div class="form-floating">
+                  <input type="text" class="form-control profile-input" id="personalData_Name" placeholder="Imię" [value]="UserPersonalData.firstName" disabled>
+                  <label for="personalData_Name">Imię</label>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <div class="form-floating">
+                  <input type="text" class="form-control profile-input" id="personalData_SurName" placeholder="Nazwisko" [value]="UserPersonalData.lastName" disabled>
+                  <label for="personalData_SurName">Nazwisko</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-12 col-md-6">
+                <div class="form-floating">
+                  <input type="email" class="form-control profile-input" id="personalData_Email" placeholder="Email" [value]="UserPersonalData.email" disabled>
+                  <label for="personalData_Email">Email</label>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <div class="form-floating">
+                  <input type="tel" class="form-control profile-input" id="personalData_Tel" placeholder="Nr. Tel" [value]="UserPersonalData.phoneNumber" disabled>
+                  <label for="personalData_Tel">Nr. Tel</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row justify-content-end">
+             
+              <div class="col-12 col-md-6 text-end">
+                <button class="btn btn-outline-primary fw-bold me-3" data-bs-toggle="modal" data-bs-target="#ProfilePhotoModal">Dodaj zdjęcie</button>
+                <button class="btn btn-outline-primary fw-bold" data-bs-toggle="modal" data-bs-target="#personalDataModal">Edytuj</button>
+              </div>
+            </div>
+          </div>
+
+         
+
+          <!-- Dane kontaktowe -->
+          <div class="profile-block mb-4">
+            <div class="row g-3 mb-3">
+              <div class="col-12">
+                <h4 class="fw-bold mb-0">Dane Kontaktowe</h4>
+              </div>
+            </div>
+
+            <form [formGroup]="ContactLinksForm" (ngSubmit)="onSubmit('ContactLinksForm')">
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6">
+                  <div class="form-floating">
+                    <input type="text" class="form-control profile-input" id="contact_Data_Linkedin" placeholder="LinkedIn" formControlName="linkedInURL">
+                    <label for="contact_Data_Linkedin">LinkedIn</label>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="form-floating">
+                    <input type="text" class="form-control profile-input" id="contact_Data_GitHub" placeholder="GitHub" formControlName="gitHubURL">
+                    <label for="contact_Data_GitHub">GitHub</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row justify-content-end">
+                <div class="col-12 col-md-6 text-end">
+                  <button class="btn btn-outline-success fw-bold">Zapisz</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Doświadczenie zawodowe -->
+          <div class="profile-block mb-4">
+            <div class="row g-3 mb-3">
+              <div class="col-12">
+                <h4 class="fw-bold mb-0">Doświadczenie zawodowe</h4>
+              </div>
+            </div>
+
+            <form [formGroup]="Experienceform" (ngSubmit)="onSubmit('Experienceform')">
+              <div class="row g-3 mb-5">
+                <div class="col-12 col-md-6">
+                  <div class="form-floating">
+                    <input type="text" class="form-control profile-input" id="expiranceData_CompanyName" placeholder="Nazwa firmy" formControlName="companyName">
+                    <label for="expiranceData_CompanyName">Nazwa firmy</label>
+                  </div>
+                  @if (Experienceform.controls.companyName.hasError('required') && Experienceform.controls.companyName.touched){
+                    <div class="text-danger mt-1">Nazwa firmy jest wymagana.</div>
+                  }
+                </div>
+
+                <div class="col-12 col-md-3">
+                  <div class="form-floating">
+                    <input type="date" class="form-control profile-input" id="expiranceData_FromDate" placeholder="Data od" formControlName="startDate">
+                    <label for="expiranceData_FromDate">Data od</label>
+                  </div>
+                  @if (Experienceform.controls.startDate.hasError('required') && Experienceform.controls.startDate.touched){
+                    <div class="text-danger mt-1">Data rozpoczęcia jest wymagana.</div>
+                  }
+                </div>
+
+                <div class="col-12 col-md-3">
+                  <div class="form-floating">
+                    <input type="date" class="form-control profile-input" id="expiranceData_ToDate" placeholder="Data do" formControlName="endDate">
+                    <label for="expiranceData_ToDate">Data do</label>
+                  </div>
+                  @if (Experienceform.controls.endDate.hasError('required') && Experienceform.controls.isCurrent.value == false && Experienceform.controls.endDate.touched){
+                    <div class="text-danger mt-1">Data zakończenia jest wymagana.</div>
+                  }
+
+                  <div class="form-check form-switch mt-3">
+                    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault" formControlName="isCurrent">
+                    <label class="form-check-label" for="switchCheckDefault">Obecna praca</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6">
+                  <div class="form-floating">
+                    <textarea class="form-control profile-input profile-textarea" id="expiranceData_Discription" placeholder="Zdobyte doświdczenie" formControlName="jobDescription" style="height: 250px"></textarea>
+                    <label for="expiranceData_Discription">Opisz zdobyte doświadczenie</label>
+                  </div>
+                  @if (Experienceform.controls.jobDescription.hasError('required') && Experienceform.controls.jobDescription.touched){
+                    <div class="text-danger mt-1">Opis doświadczenia jest wymagany.</div>
+                  }
+                </div>
+
+                <div class="col-12 col-md-6 d-flex flex-column justify-content-between">
+                  <div>
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control profile-input" id="expiranceData_JobTitle" placeholder="Nazwa stanowiska" formControlName="jobTitle">
+                      <label for="expiranceData_JobTitle">Nazwa stanowiska</label>
+                    </div>
+                    @if (Experienceform.controls.jobTitle.hasError('required') && Experienceform.controls.jobTitle.touched){
+                      <div class="text-danger mt-1">Nazwa stanowiska jest wymagana.</div>
+                    }
+                  </div>
+
+                  <div class="selector-box">
+                    <h5>Wybierz rekord do zaminy.</h5>
+                    <p class="text-muted mb-2">Jeżeli chcesz dodać nowy rekord zostaw "New rekord"</p>
+
+                    <select class="form-control form-control-lg profile-select" formControlName="selector">
+                      <option [value]="0">New rekord</option>
+                      @for (e of ListOfExperiences; track e.id) {
+                        <option [value]="e.id"> {{ e.companyName }} </option>
+                      }
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row justify-content-end">
+                <div class="col-12 col-md-6 text-end">
+                  <button class="btn btn-outline-success fw-bold me-3" type="submit">Zapisz</button>
+                  <button class="btn btn-outline-danger fw-bold" type="button" (click)="onDelete('Experienceform')">Usuń</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Wykształcenie -->
+          <div class="profile-block mb-4">
+            <div class="row g-3 mb-3">
+              <div class="col-12">
+                <h4 class="fw-bold mb-0">Wykształcenie</h4>
+              </div>
+            </div>
+
+            <form [formGroup]="Educationform" (ngSubmit)="onSubmit('Educationform')">
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6">
+                  <div class="form-floating">
+                    <input type="text" class="form-control profile-input" id="education_SchoolName" placeholder="Nazwa Szkoły" formControlName="schoolName">
+                    <label for="education_SchoolName">Nazwa Szkoły</label>
+                  </div>
+                  @if (Educationform.controls.schoolName.hasError('required') && Educationform.controls.schoolName.touched){
+                    <div class="text-danger mt-1">Nazwa szkoły jest wymagana.</div>
+                  }
+                </div>
+
+                <div class="col-12 col-md-3">
+                  <div class="form-floating">
+                    <input type="date" class="form-control profile-input" id="education_FromDate" placeholder="Data od" formControlName="startDate">
+                    <label for="education_FromDate">Data od</label>
+                  </div>
+                  @if (Educationform.controls.startDate.hasError('required') && Educationform.controls.startDate.touched){
+                    <div class="text-danger mt-1">Data rozpoczęcia jest wymagana.</div>
+                  }
+                </div>
+
+                <div class="col-12 col-md-3">
+                  <div class="form-floating">
+                    <input type="date" class="form-control profile-input" id="education_ToDate" placeholder="Data do" formControlName="endDate">
+                    <label for="education_ToDate">Data do</label>
+                  </div>
+                  @if (Educationform.controls.endDate.hasError('required') && Educationform.controls.isCurrent.value == false && Educationform.controls.endDate.touched){
+                    <div class="text-danger mt-1">Data zakończenia jest wymagana.</div>
+                  }
+
+                  <div class="form-check form-switch mt-3">
+                    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault" formControlName="isCurrent">
+                    <label class="form-check-label" for="switchCheckDefault">W trakcie nauki</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6 align-content-end">
+                  <div class="form-floating">
+                    <input type="text" class="form-control profile-input" id="education_ClassProfile" placeholder="Profil klasy" formControlName="studyProfile">
+                    <label for="education_ClassProfile">Profil klasy</label>
+                  </div>
+                  @if (Educationform.controls.studyProfile.hasError('required') && Educationform.controls.studyProfile.touched){
+                    <div class="text-danger mt-1">Profil klasy jest wymagany.</div>
+                  }
+                </div>
+
+                <div class="col-12 col-md-6 d-flex flex-column justify-content-around">
+                  <div class="selector-box">
+                    <h5>Wybierz rekord do zaminy.</h5>
+                    <p class="text-muted mb-2">Jeżeli chcesz dodać nowy rekord zostaw "New rekord"</p>
+
+                    <select class="form-control form-control-lg profile-select" formControlName="selector">
+                      <option [value]="0">New rekord</option>
+                      @for (e of ListOfEducations; track e.id) {
+                        <option [value]="e.id"> {{ e.schoolName }} </option>
+                      }
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row justify-content-end">
+                <div class="col-12 col-md-6 text-end">
+                  <button class="btn btn-outline-success fw-bold me-3">Zapisz</button>
+                  <button class="btn btn-outline-danger fw-bold" type="button" (click)="onDelete('Educationform')">Usuń</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Kompetencje językowe -->
+          <div class="profile-block mb-4">
+            <div class="row g-3 mb-3">
+              <div class="col-12">
+                <h4 class="fw-bold mb-0">Kompetencje Językowe</h4>
+              </div>
+            </div>
+
+            <form [formGroup]="languageForm" (ngSubmit)="onSubmit('languageForm')">
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6 mt-3">
+                  <div class="mb-3">
+                    <select class="form-control form-control-lg profile-select" formControlName="language">
+                      <option value="" disabled selected hidden>Wybierz język...</option>
+                      @for (e of languages; track e.id) {
+                        <option [value]="e.id"> {{ e.name }} </option>
+                      }
+                    </select>
+                  </div>
+
+                  <div class="mb-3">
+                    <select class="form-control form-control-lg profile-select" formControlName="level">
+                      <option value="" disabled selected hidden>Wybierz poziom...</option>
+                      <option value="0">Początkujący</option>
+                      <option value="1">Średnio zawwansowany</option>
+                      <option value="2">Zawansowany</option>
+                      <option value="3">Biełgy</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 d-flex flex-column justify-content-end mb-3">
+                  <div class="selector-box">
+                    <h5>Wybierz rekord do zaminy.</h5>
+                    <p class="text-muted mb-2">Jeżeli chcesz dodać nowy rekord zostaw "New rekord"</p>
+
+                    <select class="form-control form-control-lg profile-select" formControlName="selector">
+                      <option [value]="0">New rekord</option>
+                      @for (e of ListOfLanguages; track e.id) {
+                        <option [value]="e.id"> {{ languages[e.language - 1].name }} </option>
+                      }
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row justify-content-end">
+                <div class="col-12 col-md-6 text-end">
+                  <button class="btn btn-outline-success fw-bold me-3">Zapisz</button>
+                  <button class="btn btn-outline-danger fw-bold" type="button" (click)="onDelete('languageForm')">Usuń</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Zainteresowania -->
+          <div class="profile-block mb-4">
+            <div class="row g-3 mb-3">
+              <div class="col-12">
+                <h4 class="fw-bold mb-0">Zainteresowania</h4>
+              </div>
+            </div>
+
+            <form [formGroup]="interestForm" (ngSubmit)="onSubmit('interestForm')">
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6 mt-3">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control profile-input" id="interest_Name" placeholder="Zainteresowanie" formControlName="interest">
+                    <label for="interest_Name">Zainteresowanie</label>
+                  </div>
+
+                  <div class="form-floating mb-3">
+                    <textarea class="form-control profile-input profile-textarea" id="interest_Discription" placeholder="Opis zainteresowania" formControlName="description" style="height: 250px"></textarea>
+                    <label for="interest_Discription">Opisz zainteresowanie</label>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 d-flex flex-column justify-content-end mb-3">
+                  <div class="selector-box">
+                    <h5>Wybierz rekord do zaminy.</h5>
+                    <p class="text-muted mb-2">Jeżeli chcesz dodać nowy rekord zostaw "New rekord"</p>
+
+                    <select class="form-control form-control-lg profile-select" formControlName="selector">
+                      <option [value]="0">New rekord</option>
+                      @for (e of ListOfInterests; track e.id) {
+                        <option [value]="e.id"> {{ e.interest }} </option>
+                      }
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row justify-content-end">
+                <div class="col-12 col-md-6 text-end">
+                  <button class="btn btn-outline-success fw-bold me-3">Zapisz</button>
+                  <button class="btn btn-outline-danger fw-bold" type="button" (click)="onDelete('interestForm')">Usuń</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Umiejętności -->
+          <div class="profile-block mb-4">
+            <div class="row g-3 mb-3">
+              <div class="col-12">
+                <h4 class="fw-bold mb-0">Umiejętności</h4>
+              </div>
+            </div>
+
+            <form [formGroup]="skillForm" (ngSubmit)="onSubmit('skillForm')">
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6 align-content-center pt-3">
+                  <div class="form-floating">
+                    <input type="text" class="form-control profile-input" id="skill_Name" placeholder="Umiejętność" formControlName="skill">
+                    <label for="skill_Name">Umiejętność np. Tworzenie skalowanego systemu MAS./Znajomość biblioteki pillow.</label>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 d-flex flex-column justify-content-end mb-3">
+                  <div class="selector-box">
+                    <h5>Wybierz rekord do zaminy.</h5>
+                    <p class="text-muted mb-2">Jeżeli chcesz dodać nowy rekord zostaw "New rekord"</p>
+
+                    <select class="form-control form-control-lg profile-select" formControlName="selector">
+                      <option [value]="0">New rekord</option>
+                      @for (e of ListOfSkills; track e.id) {
+                        <option [value]="e.id"> {{ e.skill }} </option>
+                      }
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row justify-content-end">
+                <div class="col-12 col-md-6 text-end">
+                  <button class="btn btn-outline-success fw-bold me-3">Zapisz</button>
+                  <button class="btn btn-outline-danger fw-bold" type="button" (click)="onDelete('skillForm')">Usuń</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Atuty -->
+          <div class="profile-block mb-4">
+            <div class="row g-3 mb-3">
+              <div class="col-12">
+                <h4 class="fw-bold mb-0">Autyty</h4>
+              </div>
+            </div>
+
+            <form [formGroup]="strengthForm" (ngSubmit)="onSubmit('strengthForm')">
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6 align-content-center pt-3">
+                  <div class="form-floating">
+                    <input type="text" class="form-control profile-input" id="strength_Name" placeholder="Atuty" formControlName="strength">
+                    <label for="strength_Name">Atuty np. Samodzielność, Asertywność ...</label>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 d-flex flex-column justify-content-end mb-3">
+                  <div class="selector-box">
+                    <h5>Wybierz rekord do zaminy.</h5>
+                    <p class="text-muted mb-2">Jeżeli chcesz dodać nowy rekord zostaw "New rekord"</p>
+
+                    <select class="form-control form-control-lg profile-select" formControlName="selector">
+                      <option [value]="0">New rekord</option>
+                      @for (e of ListOfStrengths; track e.id) {
+                        <option [value]="e.id"> {{ e.strength }} </option>
+                      }
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row justify-content-end">
+                <div class="col-12 col-md-6 text-end">
+                  <button class="btn btn-outline-success fw-bold me-3" type="submit">Zapisz</button>
+                  <button class="btn btn-outline-danger fw-bold" type="button" (click)="onDelete('strengthForm')">Usuń</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Projekty -->
+            <div class="profile-block mb-4">
+              <div class="row g-3 mb-3">
+                <div class="col-12">
+                  <h4 class="fw-bold mb-0">Projekty</h4>
+                </div>
+              </div>
+  
+            <form [formGroup]="projectsForm" (ngSubmit)="onSubmit('projectsForm')">
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6 align-content-center pt-3">
+                  <div class="form-floating">
+                    <input type="text" class="form-control profile-input" id="project_Name" placeholder="Projekt" formControlName="projectName">
+                    <label for="project_Name">Nazwa Projektu np. Aplikacja do zarządzania zadaniami ...</label>
+                  </div>
+               </div> 
+
+                <div class="col-12 col-md-3 align-content-center pt-3">
+                  <div class="form-floating">
+                    <input type="date" class="form-control profile-input" id="expiranceData_FromDate" placeholder="Data od" formControlName="startDate">
+                    <label for="expiranceData_FromDate">Data od</label>
+                  </div>
+                  @if (Experienceform.controls.startDate.hasError('required') && Experienceform.controls.startDate.touched){
+                    <div class="text-danger mt-1">Data rozpoczęcia jest wymagana.</div>
+                  }
+                </div>
+
+                <div class="col-12 col-md-3 align-content-center pt-3">
+                  <div class="form-floating">
+                    <input type="date" class="form-control profile-input" id="expiranceData_ToDate" placeholder="Data do" formControlName="endDate">
+                    <label for="expiranceData_ToDate">Data do</label>
+                  </div>
+                  @if (Experienceform.controls.endDate.hasError('required') && Experienceform.controls.isCurrent.value == false && Experienceform.controls.endDate.touched){
+                    <div class="text-danger mt-1">Data zakończenia jest wymagana.</div>
+                  }
+                </div>  
+              </div>
+              
+              <div class="row g-3 mb-3">
+                
+                <div class="col-12 col-md-6 ">
+                  <div class="form-floating">
+                    <input type="text" class="form-control profile-input" id="project_Link" placeholder="Link do projektu" formControlName="projectURL">
+                    <label for="project_Link">Link do projektu</label>
+                  </div>
+
+                   <div class="form-floating mt-3">
+                    <textarea type="text" class="form-control profile-input" id="project_Description" placeholder="Opis projektu" formControlName="description" style="height: 200px"></textarea>
+                    <label for="project_Description">Opis projektu</label>
+                  </div>
+                  
+                  <div class="form-floating mt-3 d-flex flex-column align-items-end">
+                    <input #techInput type="text" class="form-control profile-input" id="projectTechnology" placeholder="Technologie">
+                    <label for="projectTechnology">Technologie</label>
+                    <div class="mt-2">
+                      @for (t of (projectsForm.get('technologies')?.value ?? []); track t) {
+                        <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle rounded-pill px-3 py-2 me-2 mb-2">
+                          {{ t }}
+                          <button
+                            type="button"
+                            class="btn-close btn-sm ms-2"
+                            aria-label="Usuń"
+                            (click)="onDeleteProjectTechnology(t)">
+                          </button>
+                        </span>
+                      }
+
+                    
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-outline-secondary mt-1"
+                        (click)="onAddTechnology(techInput.value)">
+                        Dodaj
+                    </button>
+                  </div>       
+                </div>
+
+                <div class="col-12 col-md-6 justify-content-center d-flex flex-column ">
+                    <div class="selector-box mb-3">
+                      <h5>Wybierz rekord do zaminy.</h5>
+                      <p class="text-muted mb-2">Jeżeli chcesz dodać nowy rekord zostaw "New rekord"</p>
+                      </div>  
+                      <select class="form-control form-control-lg profile-select" formControlName="selector">
+                        <option [value]="0">New rekord</option>
+                        @for (e of ListOfProjects; track e.id) {
+                          <option [value]="e.id"> {{ e.projectName }} </option>
+                        }
+                      </select>
+                </div>
+              </div>
+
+              <div class="row justify-content-end">
+                <div class="col-12 col-md-6 text-end">
+                  <button class="btn btn-outline-success fw-bold me-3">Zapisz</button>
+                  <button class="btn btn-outline-danger fw-bold" type="button" (click)="onDelete('projectsForm')">Usuń</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+          <!-- Dane rekrutacyjne -->
+          <div class="profile-block mb-0">
+            <div class="row g-3 mb-3">
+              <div class="col-12">
+                <h4 class="fw-bold mb-0">Dane rekrutacyjne</h4>
+              </div>
+            </div>
+
+            <form [formGroup]="personalProfileForm" (ngSubmit)="onSubmit('personalProfileForm')">
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-md-8">
+                  <h5 class="p-1">Opowiedz o sobie.</h5>
+
+                  <div class="form-floating">
+                    <textarea class="form-control profile-input profile-textarea" id="recuData_Q1" placeholder="Profil osobisty" style="height: 150px" formControlName="personalProfile"></textarea>
+                    <label for="recuData_Q1">Profil osobisty</label>
+                  </div>
+                </div>
+
+                <div class="row justify-content-end">
+                  <div class="col-12 col-md-6 text-end">
+                    <button class="btn btn-outline-success fw-bold">Zapisz</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- Modal danych osobowych -->
+<div class="modal fade" id="personalDataModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="personalDataModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 rounded-4 shadow-lg profile-modal">
+      <div class="modal-header border-0 pb-0 px-4 pt-4">
+        <h1 class="modal-title fs-5 fw-bold" id="personalDataModalLabel">Edytuj dane osobowe</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+      </div>
+
+      <div class="modal-body px-4 pt-3">
+        <form [formGroup]="UserDataform" (ngSubmit)="onSubmit('UserDataform')">
+          <div class="row g-3 mb-3">
+            <div class="col-12 col-md-6">
+              <div class="form-floating">
+                <input type="text" class="form-control profile-input" id="personalData_Name_Modal" placeholder="Imię" formControlName="firstName">
+                <label for="personalData_Name_Modal">Imię</label>
+              </div>
+              @if (UserDataform.controls.firstName.hasError('required') && UserDataform.controls.firstName.touched){
+                <div class="text-danger mt-1">Imię jest wymagane.</div>
+              }
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="form-floating">
+                <input type="text" class="form-control profile-input" id="personalData_SurName_Modal" placeholder="Nazwisko" formControlName="lastName">
+                <label for="personalData_SurName_Modal">Nazwisko</label>
+              </div>
+              @if (UserDataform.controls.lastName.hasError('required') && UserDataform.controls.lastName.touched){
+                <div class="text-danger mt-1">Nazwisko jest wymagane.</div>
+              }
+            </div>
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-12 col-md-6">
+              <div class="form-floating">
+                <input type="email" class="form-control profile-input" id="personalData_Email_Modal" placeholder="Email" formControlName="email">
+                <label for="personalData_Email_Modal">Email</label>
+              </div>
+              @if (UserDataform.controls.email.hasError('required') && UserDataform.controls.email.touched){
+                <div class="text-danger mt-1">Email jest wymagany.</div>
+              }
+              @if (UserDataform.controls.email.hasError('email') && UserDataform.controls.email.touched){
+                <div class="text-danger mt-1">Nieprawidłowy format email.</div>
+              }
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="form-floating">
+                <input type="tel" class="form-control profile-input" id="personalData_Tel_Modal" placeholder="Nr. Tel" formControlName="phoneNumber">
+                <label for="personalData_Tel_Modal">Nr. Tel</label>
+              </div>
+              @if (UserDataform.controls.phoneNumber.hasError('pattern') && UserDataform.controls.phoneNumber.touched){
+                <div class="text-danger mt-1">Nieprawidłowy format numeru telefonu.</div>
+              }
+            </div>
+          </div>
+
+          <div class="modal-footer border-0 px-0 pb-0 pt-3">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Zamknij</button>
+            <button class="btn btn-success profile-btn-success" type="submit">Zapisz zmiany</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal do dodawania zdjęcia profilowego będzie podobny do tego z danymi osobowymi, ale z polem do uploadu pliku i podglądem aktualnego zdjęcia. -->
+<div class="modal fade" id="ProfilePhotoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ProfilePhotoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 rounded-4 shadow-lg profile-modal">
+      <div class="modal-header border-0 pb-0 px-4 pt-4">
+        <h1 class="modal-title fs-5 fw-bold" id="ProfilePhotoModalLabel">Edytuj zdjęcie profilowe</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+      </div>
+
+      <div class="modal-body px-4 pt-3">
+        <form [formGroup]="profilePhotoForm" (ngSubmit)="onSubmit('profilePhotoForm')" >
+          <div class="my-3">
+              <img
+              [src]="PhotoToShow"
+              alt="Zdjęcie profilowe"
+              class="rounded-circle"
+              style="width: 150px; height: 150px; object-fit: cover;"
+              >
+              
+          </div>
+          <div class="mb-3">
+            <label for="profilePhotoInput" class="form-label">Wybierz nowe zdjęcie profilowe</label>
+            <input class="form-control" type="file" id="profilePhotoInput" accept="image/*" formControlName="profilePhoto" (change)="onFileSelected($event)">
+          </div>
+
+
+          <div class="modal-footer border-0 px-0 pb-0 pt-3 ">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Zamknij</button>
+              <button class="btn btn-success profile-btn-success" type="submit">Dodaj zdjęcie</button>
+              <button type="button" class="btn btn-danger" (click)="onDelete('profilePhotoForm')">Usuń zdjęcie</button>
+          </div>
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+</div>

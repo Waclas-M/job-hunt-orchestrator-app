@@ -1,0 +1,134 @@
+<!-- Modal konfiguracji -->
+  <div class="modal fade" id="cvConfigModal" tabindex="-1" role="dialog" aria-labelledby="cvConfigModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+      <div class="modal-content border-0 rounded-4 shadow-lg cv-modal">
+
+        <div class="modal-header border-0 pb-0 px-4 pt-4">
+          <div>
+            <h5 class="modal-title fw-bold" id="cvConfigModal">Konfiguracja CV</h5>
+            <p class="text-muted small mb-0">Wybierz, które sekcje mają być przetwarzane automatycznie lub ręcznie.</p>
+          </div>
+        </div>
+
+        <div class="modal-body px-4 pt-3">
+          <form [formGroup]="cvFormGenerate">
+
+            <!-- Education -->
+            <div class="config-section mb-4">
+              <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" role="switch" id="switchCheckEducation" formControlName="userEducationsProcessAuto">
+                <label class="form-check-label fw-semibold" for="switchCheckEducation">Automatyczne przetwarzanie wykształcenia</label>
+              </div>
+
+              <div class="config-list">
+                <div class="d-flex flex-column align-content-start gap-2">
+                  @for (e of ListOfEducations; track e.id) {
+                    <div class="config-item">
+                      <input
+                        type="checkbox"
+                        [value]="e.id"
+                        class="me-3"
+                        name="userEducationsIds"
+                        id="education_{{e.id}}"
+                        [checked]="isSelected('userEducationsIds', e.id)"
+                        (change)="onCheckboxChange('userEducationsIds', e.id, $event)"
+                        [disabled]="isIdsDisabled('userEducationsIds')">
+                      <label for="education_{{e.id}}" class="mb-0">{{ e.schoolName }}</label>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <!-- Experience -->
+            <div class="config-section mb-4">
+              <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" role="switch" id="switchCheckExperience" formControlName="userExperiencesProcessAuto">
+                <label class="form-check-label fw-semibold" for="switchCheckExperience">Automatyczne przetwarzanie doświadczenia</label>
+              </div>
+
+              <div class="config-list">
+                <div class="d-flex flex-column align-content-start gap-2">
+                  @for (e of ListOfExperiences; track e.id) {
+                    <div class="config-item">
+                      <input
+                        type="checkbox"
+                        [value]="e.id"
+                        class="me-3"
+                        name="userExperiencesIds"
+                        id="experience_{{e.id}}"
+                        [checked]="isSelected('userExperiencesIds', e.id)"
+                        (change)="onCheckboxChange('userExperiencesIds', e.id, $event)"
+                        [disabled]="isIdsDisabled('userExperiencesIds')">
+                      <label for="experience_{{e.id}}" class="mb-0">{{ e.companyName }}</label>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="config-section mb-4">
+              <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" role="switch" id="switchCheckSkill" formControlName="userSkillsProcessAuto">
+                <label class="form-check-label fw-semibold" for="switchCheckSkill">Automatyczne przetwarzanie Umiejętności</label>
+              </div>
+
+              <div class="config-list">
+                <div class="d-flex flex-column align-content-start gap-2">
+                  @for (e of ListOfSkills; track e.id) {
+                    <div class="config-item">
+                      <input
+                        type="checkbox"
+                        [value]="e.id"
+                        class="me-3"
+                        name="userSkillsIds"
+                        id="skill_{{e.id}}"
+                        [checked]="isSelected('userSkillsIds', e.id)"
+                        (change)="onCheckboxChange('userSkillsIds', e.id, $event)"
+                        [disabled]="isIdsDisabled('userSkillsIds')">
+                      <label for="skill_{{e.id}}" class="mb-0">{{ e.skill }}</label>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <!-- Strengths -->
+            <div class="config-section mb-1">
+              <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" role="switch" id="switchCheckStrengths" formControlName="userStrengsProcessAuto">
+                <label class="form-check-label fw-semibold" for="switchCheckStrengths">Automatyczne przetwarzanie Atutów</label>
+              </div>
+
+              <div class="config-list">
+                <div class="d-flex flex-column align-content-start gap-2">
+                  @for (e of ListOfStrengths; track e.id) {
+                    <div class="config-item">
+                      <input
+                        type="checkbox"
+                        [value]="e.id"
+                        class="me-3"
+                        name="userStrengsIds"
+                        id="skill_{{e.id}}"
+                        [checked]="isSelected('userStrengsIds', e.id)"
+                        (change)="onCheckboxChange('userStrengsIds', e.id, $event)"
+                        [disabled]="isIdsDisabled('userStrengsIds')">
+                      <label for="skill_{{e.id}}" class="mb-0">{{ e.strength }}</label>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="modal-footer border-0 pt-0 px-4 pb-4 mt-2">
+          <button type="button" class="btn btn-success px-4 cv-btn-success" data-bs-dismiss="modal" (click)="onSubmit()">Generuj CV</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

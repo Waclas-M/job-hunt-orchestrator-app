@@ -1,0 +1,130 @@
+<div class="container-fluid py-4 cv-section-bg">
+
+  <!-- Nagłówek -->
+  <div class="row mb-4">
+    <div class="col-12 text-center text-md-start ps-5">
+      <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2 mb-3">
+        Generator CV
+      </span>
+      <h2 class="fw-bold mb-2">Stwórz CV</h2>
+      <p class="text-muted mb-0">Podaj swoją ofertę i dodaj dane, aby wygenerować CV.</p>
+    </div>
+  </div>
+
+  <div class="row p-0 m-0 g-0">
+    <div class="col-12 px-4">
+      <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden cv-main-card">
+
+        <div class="card-body p-4 p-lg-5">
+          
+          <!-- Sekcja Oferty -->
+          <form class="d-flex flex-column mb-4" >
+            <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-3">
+              <div>
+                <h4 class="fw-bold mb-1">Podaj ofertę</h4>
+                <p class="text-muted mb-0 small">Wklej link do oferty pracy, dla której chcesz przygotować CV.</p>
+              </div>
+
+              <div class="text-lg-end">
+                <span class="badge text-bg-light border rounded-pill px-3 py-2">
+                  AI CV Matching
+                </span>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="form-floating mb-3">
+              <input class="form-control cv-input" id="offerInput1" placeholder="Podaj link do oferty" (input)="onInputChange($event)">
+              <label for="offerInput1">Podaj link do oferty</label>
+            </div>
+
+            <div class="text-end">
+              <button
+                class="btn btn-success px-5 py-2 fw-bold cv-btn-success"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#cvConfigModal"
+                [disabled]="cvLoadingProcess.isLoading()">
+                Generuj CV
+                </button>
+            </div>
+          </form>
+
+          <div
+            class="align-items-center loading-box"
+            [style.display]="cvLoadingProcess.isLoading() ? 'flex' : 'none'">
+            <strong role="status">Przygotowujemy twoje CV ...</strong>
+            <div class="spinner-border ms-auto" aria-hidden="true"></div>
+          </div>
+
+          <hr class="my-4">
+
+          <!-- Sekcja Danych Osobowych -->
+          <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
+            <div>
+              <h5 class="mb-1 fw-bold">Twoje dane</h5>
+              <p class="text-muted small mb-0">Podgląd podstawowych informacji używanych do generowania CV.</p>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <a class="btn btn-outline-primary btn-sm px-3" routerLink="/Profil">Edytuj</a>
+            </div>
+          </div>
+
+          <!-- Pierwszy rząd danych -->
+          <div class="row g-3 mb-3">
+            <div class="col-12 col-md-6">
+              <div class="form-floating">
+                <input type="text" class="form-control cv-input" id="personalData_Name" value="{{UserPersonalData.firstName}}" disabled>
+                <label for="personalData_Name">Imię</label>
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="form-floating">
+                <input type="text" class="form-control cv-input" id="personalData_SurName" value="{{UserPersonalData.lastName}}" disabled>
+                <label for="personalData_SurName">Nazwisko</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Drugi rząd danych -->
+          <div class="row g-3 mb-3">
+            <div class="col-12 col-md-6">
+              <div class="form-floating">
+                <input type="text" class="form-control cv-input" id="personalData_Email" value="{{UserPersonalData.email}}" disabled>
+                <label for="personalData_Email">Email</label>
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="form-floating">
+                <input type="text" class="form-control cv-input" id="personalData_Phone" value="{{UserPersonalData.phoneNumber}}" disabled>
+                <label for="personalData_Phone">Numer telefonu</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Estetyczny rząd -->
+          <div class="position-relative preview-blur-wrapper">
+            <div class="row g-3 fading-row">
+              <div class="col-12 col-md-6">
+                <div class="form-floating">
+                  <input type="text" class="form-control cv-input" placeholder="Doświadczenie" disabled>
+                  <label>Doświadczenie zawodowe...</label>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="form-floating">
+                  <input type="text" class="form-control cv-input" placeholder="Wykształcenie" disabled>
+                  <label>Wykształcenie i kursy...</label>
+                </div>
+              </div>
+            </div>
+            <div class="fade-overlay"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<app-cv-configuration-modal (form)="GenerateCV($event)"></app-cv-configuration-modal>

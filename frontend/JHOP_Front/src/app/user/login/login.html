@@ -1,0 +1,21 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+    <h1>Zaloguj się</h1>
+    <p>Nie masz konta? <a class="text-decoration-none fw-medium text-success d-inlin-block" routerLink="/rejestracja">Zarejestruj się</a> </p>
+    </div>
+    <div class="form-floating mt-4">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email"> 
+        <label for="floatingInput">Email address</label> 
+         @if (form.controls.email.hasError('required') && form.controls.email.touched){
+        <div class="text-danger">Email jest wymagany.</div>
+    }
+    </div>
+    <div class="form-floating mt-4"> 
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password"> 
+        <label for="floatingPassword">Password</label> 
+         @if (form.controls.password.hasError('required') && form.controls.password.touched){
+        <div class=" text-danger">Hasło jest wymagane.</div>
+        }
+    </div>
+    <button class="btn btn-success w-100 py-2 mt-4" type="submit">Zaloguj</button>
+</form>

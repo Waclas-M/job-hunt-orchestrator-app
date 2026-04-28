@@ -1,0 +1,43 @@
+<form [formGroup]="form" (ngSubmit)="onSubit()">
+    
+    <div>
+    <h1>Zarejestruj się</h1>
+    <p class="mt-1">Masz konto? <a class="text-decoration-none fw-medium text-success d-inlin-block" routerLink="/logowanie">Zaloguj się</a> </p>
+    </div>
+    <div class="form-floating mt-2">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Imię" formControlName="name"> 
+        <label for="floatingInput">Imię</label> 
+        @if (form.controls.name.hasError('required') && form.controls.name.touched){
+        <div class="text-danger">Imię jest wymagane.</div>
+        }
+    </div>
+    <div class="form-floating mt-2">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Nazwisko" formControlName="surName"> 
+        <label for="floatingInput">Nazwisko</label> 
+        @if (form.controls.surName.hasError('required') && form.controls.surName.touched){
+        <div class="text-danger">Nazwisko jest wymagane.</div>
+    }
+    </div>
+    <div class="form-floating mt-2">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email"> 
+        <label for="floatingInput">Email address</label> 
+        @if (form.controls.email.hasError('required') && form.controls.email.touched){
+        <div class="text-danger">Email jest wymagany.</div>
+    }
+    </div>
+    <div class="form-floating mt-2"> 
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password"> 
+        <label for="floatingPassword">Hasło</label> 
+        @if (form.controls.password.hasError('required') && form.controls.password.touched){
+        <div class=" text-danger">Hasło jest wymagane.</div>
+        }
+    </div>
+    <div class="form-floating mt-2"> 
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="confirmPassword"> 
+        <label for="floatingPassword">Powtórz Hasło</label> 
+        @if (form.controls.confirmPassword.hasError('passwordMismatch') && form.controls.confirmPassword.touched) {
+            <div class="text-danger" >Hasła nie są identyczne.</div>
+        }
+    </div>
+    <button class="btn btn-success w-100 py-2 mt-3" type="submit">Zarejestruj</button>
+</form>

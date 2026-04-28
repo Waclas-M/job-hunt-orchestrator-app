@@ -1,0 +1,10 @@
+pika
+python-dotenv
+pypdf
+reportlab
+requests
+openai
+langchain
+rlPyCairo
+pycairo
+Pillow

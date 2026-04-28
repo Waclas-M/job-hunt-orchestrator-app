@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+textarea {
+    resize: none;
+    overflow: auto;
+    /* background-color: #EDF2F9; */
+    border: 1px solid #DCE4EE;
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-y: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+body {
+    overflow-y: scroll; /* Wymusza pasek przewijania */
+    overflow-x: hidden;
+}
